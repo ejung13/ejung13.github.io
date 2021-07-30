@@ -1,7 +1,17 @@
-<html>
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
-<body>
+
+<!-- Load color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+
+
 <script>
 
 // set the dimensions and margins of the graph
@@ -23,7 +33,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 10000])
+    .domain([0, 12000])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -39,7 +49,12 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
   // Add a scale for bubble size
   var z = d3.scaleLinear()
     .domain([200000, 1310000000])
-    .range([ 1, 40]);
+    .range([ 4, 40]);
+
+  // Add a scale for bubble color
+  var myColor = d3.scaleOrdinal()
+    .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
+    .range(d3.schemeSet2);
 
   // Add dots
   svg.append('g')
@@ -50,13 +65,10 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
       .attr("cx", function (d) { return x(d.gdpPercap); } )
       .attr("cy", function (d) { return y(d.lifeExp); } )
       .attr("r", function (d) { return z(d.pop); } )
-      .style("fill", "#69b3a2")
+      .style("fill", function (d) { return myColor(d.continent); } )
       .style("opacity", "0.7")
-      .attr("stroke", "black")
+      .attr("stroke", "white")
+      .style("stroke-width", "2px")
 
-})
+  })
 </script>
-
-</script>
-</body>
-</html>
