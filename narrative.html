@@ -1,4 +1,3 @@
-<!-- Code from d3-graph-gallery.com -->
 <!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -43,9 +42,9 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .call(d3.axisLeft(y));
 
   // Color scale: give me a specie name, I return a color
-  var color = d3.scaleOrdinal()
-    .domain([500, 2500, 25000])
-    .range([ "#440154ff", "#21908dff", "#fde725ff"])
+  var color = d3.scaleLinear()
+    .domain([500, 25000, 30000])
+    .range([ "green", "gold"])
 
   // Add dots
   svg.append('g')
@@ -56,7 +55,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
       .attr("cx", function (d) { return x(d.gdp_per_capita); } )
       .attr("cy", function (d) { return y(d.suicides_100k_pop); } )
       .attr("r", 5)
-      .style("fill", function (d) { return color(d.Species) } )
+      .style("fill", function (d) { return color(d.gdp_per_capita) } )
 
 })
 
