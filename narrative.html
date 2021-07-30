@@ -5,26 +5,134 @@
 </svg>
 <script>
  
-xdomain = [0,1];
-xrange = [0,2.380952380952381];
-ydomain = [0,1];
-yrange = [100,130];
-cdomain = [0,42];
-crange = ["blue", "orange"];
+var USER_SPEED = "fast"; 
+var width = 750,    
+    height = 750, 
+    padding = 1, 
+    maxRadius = 3, 
+    sched_objs = [], 
+    curr_minute = 0;
+ 
+var act_codes = [ 
+    {"index": "0", "short": "Conservative", "desc": "Conservative"},     
+    {"index": "1", "short": "Labour", "desc": "Labour"}, 
+    {"index": "2", "short": "Liberal/Liberal Democrats", "desc": "Liberal Democrats"}, 
+    {"index": "3", "short": "Other", "desc": "Other"}, 
+    {"index": "4", "short": "Plaid Cymru/SNP", "desc": "Plaid Cymru/Scottish National Party"}, 
+    {"index": "5", "short": "Did not vote", "desc": "Did not vote"},
+];
   
-xs = d3.scaleLinear().domain(xdomain).range(xrange);
-ys = d3.scaleLinear().domain(ydomain).range(yrange);
-cs = d3.scaleLinear().domain(cdomain).range(crange);
-d3.select('svg')
-  .selectAll('rect')
-  .data([4,8,15,16,23,42])
-  .enter()
-  .append('rect')
-    .attr('x',20)
-    .attr('y',function(d,i) {return ys(i);})
-    .attr('width',function(d,i) {return xs(d);})
-    .attr('height',10)
-    .style('fill',function(d,i) {return cs(d);});
+var speeds = { "slow": 200, "medium": 125, "fast": 75 };
+
+var center_act = "Did not vote", 
+    center_pt = { "x": 380, "y": 365 };  
+var foci = {};
+act_codes.forEach(function(code, i) { 
+    if (code.desc == center_act) {  
+        foci[code.index] = center_pt; 
+    } else {  
+         var theta = 2 * Math.PI / (act_codes.length-1);    
+         foci[code.index] = {x: 250 * Math.cos((i - 1) * theta)+380, y: 250 * Math.sin((i - 1) * theta)+365 }; 
+    }
+});
+ 
+var svg = d3.select("#chart").append("svg")    
+    .attr("width", width)    
+    .attr("height", height)    
+    .attr('position', 'absolute')    
+    .attr('left', '200px')    
+    .attr('top', '200px');
+ 
+d3.tsv("data/elec_results.tsv", function(error, data) {}
+
+data.forEach(function(d) {  
+    var day_array = d.day.split(",");  
+   
+    var activities = [];  
+    for (var i=0; i < day_array.length; i++) {   
+        if (i % 2 == 1) {    
+            activities.push({'act': day_array[i-1], 'duration': +day_array[i]});   
+        }  
+     }  
+     sched_objs.push(activities); 
+});
+ 
+ if (true_minute == time_notes[notes_index].start_minute) {     
+    d3.select("#year")          
+    .style("color", "#fffced")          
+    .style("text-align", "left")          
+    .style("font-size", "300%")    
+    .style("font-family", "adobe-caslon-pro")   
+    .text(time_notes[notes_index].year)    
+    .transition()    
+    .duration(500)    
+    .style("text-align", "center")    
+    .style("color", "#000000");  
+}
+ 
+if (true_minute == time_notes[notes_index].start_minute + 10) {
+d3.select("#image").append('img')
+    .attr('src', time_notes[notes_index].img)
+    .attr('width', 200)
+    .attr('height', 250)
+    .style('position', 'absolute')
+    .style('top', '100px')
+    .style('left', '150px')
+    .style('opacity', 0)
+    .style("display", "block")
+    .style("background", time_notes[notes_index].color)
+    .style("padding", "8px")
+    .style("border", "1px solid #ccc")
+    .style("box-shadow", "5px 5px 5px #999")
+    .transition()
+    .duration(1000)
+    .style('opacity', 1);
+}
+ 
+if (true_minute == time_notes[notes_index].start_minute + 10) {
+   d3.select("#note")
+      .style("top", "500px")
+      .style("color", "#fffced")
+      .style("font-size", "150%")
+      .style("font-style", "italic")
+      .transition()
+      .duration(500)
+      .style("top", "370px")
+      .style("color", "#000000")
+      .text(time_notes[notes_index].note);
+}
+
+<div class="container" style="width:1600px">
+    <div class="row">
+        <img src="img/commons_logo.png" width="400px" class="center">
+    </div>
+    <div class="row">
+        <div style="text-align:center;font-family:adobe-caslon-pro;font-size:200%;font-weight:bold">A Century of UK General Elections</div>
+    </div>
+    <div class="row">
+        <div id="year"></div>
+    </div>
+    <div class="row">
+        <div id="chart" class="col-lg-2" style="position:relative;width:1000px"></div>
+        <div class="col-lg-2" style="position:relative;width:500px">
+           <div id="image"></div>
+           <div id="note" style="text-align:center"></div>
+        </div>
+    </div>
+    <div class="row">
+        <footer style="font-size:25%;text-align:right">Created by @dr_keithmcnulty. Github: <a href="https://www.github.com/keithmcnulty/uk_election_bubble">keithmcnulty/uk_election_bubble</a>. Source: UK Parliament, Statistica, Wikipedia</footer>
+    </div>
+   <div class="row" style="text-align:center">
+        <div id="speed">
+        <div class="togglebutton slow" data-val="slow">Slow</div>
+        <div class="togglebutton medium" data-val="medium">Med</div>
+        <div class="togglebutton fast current" data-val="fast">Fast</div>
+    </div>
+    </div>
+    </div>
+</div>
+ 
+
 </script>
 </body>
 </html>
