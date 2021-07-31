@@ -145,7 +145,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .append("circle")
       .attr("cx", function (d) { return x(d.gdp_per_capita); } )
       .attr("cy", function (d) { return y(d.suicides_100k_pop); } )
-      .attr("r", function (d) { return y(d.gdp_per_capita); } )
+      .attr("r", 5)
       .style("fill", function (d) { return color(d.gdp_per_capita) } )
       // -3- Trigger the functions for hover
     .on("mouseover", showTooltip )
