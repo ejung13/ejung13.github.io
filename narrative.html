@@ -11,8 +11,8 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 800 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 400 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 var xScale = d3.scaleLinear().range([0, width]);
 var yScale = d3.scaleLinear().rangeRound([height, 0]);
@@ -60,6 +60,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
   svg.append("g")
     .call(d3.axisLeft(y));
 
+// Add grid lines
     svg.append("g")
       .attr("class", "grid")
       .attr("transform", "translate(0," + height + ")")
@@ -75,6 +76,21 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
         .tickSize(-width)
         .tickFormat("")
       );
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height+50 )
+      .text("Gdp per Capita");
+
+  // Add Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 0)
+      .attr("y", -20 )
+      .text("Life expectancy")
+      .attr("text-anchor", "start")
 
 
   // Color scale: give me a specie name, I return a color
