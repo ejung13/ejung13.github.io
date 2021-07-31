@@ -10,7 +10,7 @@
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
+var margin = {top: 40, right: 150, bottom: 60, left: 30},
     width = 400 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
@@ -47,11 +47,18 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 40000])
+    .domain([0, 45000])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x).ticks(3));
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height+50 )
+      .text("Gdp per Capita");
 
   // Add Y axis
   var y = d3.scaleLinear()
@@ -59,6 +66,15 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
+
+  // Add Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", 0)
+      .attr("y", -20 )
+      .text("Life expectancy")
+      .attr("text-anchor", "start")
+
 
 // Add grid lines
     svg.append("g")
@@ -89,7 +105,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
       .attr("text-anchor", "end")
       .attr("x", 0)
       .attr("y", -20 )
-      .text("Life expectancy")
+      .text("Suicides per 100k population")
       .attr("text-anchor", "start")
 
 
