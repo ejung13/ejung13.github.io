@@ -5,6 +5,11 @@
     </head>
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
+    
+    <!-- Load color scale -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    
     <style> </style>
     <body style="width: 1000px" onload='init()'>
         <p>
@@ -157,7 +162,6 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .data(data)
     .enter()
     .append("circle")
-      .attr("class", function(d) { return "bubbles " + d.continent })
       .attr("cx", function (d) { return x(d.gdp_per_capita); } )
       .attr("cy", function (d) { return y(d.suicides_100k_pop); } )
       .attr("r", function (d) { return z(d.population); } )
