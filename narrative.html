@@ -11,8 +11,27 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 800 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 400 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+var xScale = d3.scaleLinear().range([0, width]);
+var yScale = d3.scaleLinear().rangeRound([height, 0]);
+
+var yaxis = d3.axisLeft().scale(yScale);
+var xaxis = d3.axisBottom().scale(xScale).tickFormat(d3.format("d"));
+
+// gridlines in x/y axis function
+
+function make_x_gridlines() {
+    return d3.axisBottom(xScale)
+    .ticks(5)
+}
+
+function make_y_gridlines() {
+    return d3.axisLeft(yScale)
+    .ticks(5)
+}
+
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -40,6 +59,23 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
+
+    svg.append("g")
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + height + ")")
+      .call(make_x_gridlines()
+        .tickSize(-height)
+        .tickFormat("")
+      );
+
+
+    svg.append("g")
+      .attr("class", "grid")
+      .call(make_y_gridlines()
+        .tickSize(-width)
+        .tickFormat("")
+      );
+
 
   // Color scale: give me a specie name, I return a color
   var color = d3.scaleLinear()
