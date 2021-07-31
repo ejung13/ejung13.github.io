@@ -151,13 +151,8 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .on("mouseover", showTooltip )
     .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip )
-
-})
-
-</script>
-
-<script>
-
+    
+    
 // Features of the annotation
 const annotations = [
   {
@@ -178,6 +173,9 @@ const makeAnnotations = d3.annotation()
 d3.select("#scatter_plot")
   .append("g")
   .call(makeAnnotations)
+
+})
+
 
 </script>
     
