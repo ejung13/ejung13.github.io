@@ -79,19 +79,18 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 
   // Add X axis label:
   svg.append("text")
-      .attr("text-anchor", "end")
+      .attr("text-anchor", "middle")
       .attr("x", width)
       .attr("y", height+50 )
       .text("Gdp per Capita");
 
   // Add Y axis label:
   svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", 0)
-      .attr("y", -20 )
-      .text("Suicides per 100k population")
-      .attr("text-anchor", "start")
-
+    .attr("text-anchor", "end")
+    .attr("x", 0)
+    .attr("y", -20 )
+    .text("Suicide per 100K population")
+    .attr("text-anchor", "start");
 
   // Color scale: give me a specie name, I return a color
   var color = d3.scaleLinear()
@@ -112,3 +111,4 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 })
 
 </script>
+
