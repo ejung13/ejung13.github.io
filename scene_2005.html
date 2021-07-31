@@ -107,12 +107,12 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
   // -1- Create a tooltip div that is hidden by default:
   var tooltip = d3.select("#scatter_plot")
     .append("div")
-      .style("opacity", 0)
+      .style("opacity", 1)
       .attr("class", "tooltip")
-      .style("background-color", "black")
+      .style("background-color", "grey")
       .style("border-radius", "5px")
       .style("padding", "10px")
-      .style("color", "white")
+      .style("color", "black")
 
   // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
   var showTooltip = function(d) {
