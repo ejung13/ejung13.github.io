@@ -47,7 +47,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 50000])
+    .domain([0, 55000])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -94,7 +94,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 
   // Color scale: give me a specie name, I return a color
   var color = d3.scaleLinear()
-    .domain([500, 25000, 30000])
+    .domain([500, 25000, 55000])
     .range([ "green", "gold"])
 
   // Add dots
