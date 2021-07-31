@@ -12,7 +12,19 @@
         </p>
 
 <!-- Create a div where the graph will take place -->
-<div id="bubble"></div>
+<div id="my_bubble"></div>
+    
+<style>
+.bubbles {
+  stroke-width: 1px;
+  stroke: black;
+  opacity: .8
+}
+.bubbles:hover {
+  stroke: black;
+}
+</style>
+
 
 <script>
 
@@ -22,7 +34,7 @@ var margin = {top: 40, right: 150, bottom: 60, left: 30},
     height = 420 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select("#bubble")
+var svg = d3.select("#my_bubble")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -84,7 +96,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
   // ---------------------------//
 
   // -1- Create a tooltip div that is hidden by default:
-  var tooltip = d3.select("#bubble")
+  var tooltip = d3.select("#my_bubble")
     .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
