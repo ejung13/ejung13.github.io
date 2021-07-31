@@ -152,6 +152,26 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip )
 
+const annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    x: 100,
+    y: 100,
+    dy: 100,
+    dx: 100
+  }
+]
+
+// Add annotation to the chart
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+d3.select("#scatter_plot")
+  .append("g")
+  .call(makeAnnotations)
+
 })
 
 </script>
