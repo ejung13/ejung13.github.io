@@ -67,15 +67,6 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
   svg.append("g")
     .call(d3.axisLeft(y));
 
-  // Add Y axis label:
-  svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", 0)
-      .attr("y", -20 )
-      .text("Life expectancy")
-      .attr("text-anchor", "start")
-
-
 // Add grid lines
     svg.append("g")
       .attr("class", "grid")
