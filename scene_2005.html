@@ -74,7 +74,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 
     
   // Color scale
-  var color = d3.scaleLinear()
+  var color = d3.d3.scaleOrdinal()
     .domain([500, 25000, 55000])
     .range([ "green", "gold"]);
     
