@@ -152,45 +152,6 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
     .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip )
 
-           const annotations = [
-        {
-          note: {
-            label: "Just before Shumacher joined, McLaren came this close to overtaking Ferrari",
-            title: "Ferrari's slowest years"
-          },
-          x: 536,
-          y: 254,
-          dy: -70,
-          dx: -100
-        },
-        {
-          note: {
-            label: "More than 10 wins every year since 2014!",
-            title: "Mercedes is back"
-          },
-          x: 750,
-          y: 428,
-          dy: -60,
-          dx: -40
-        },
-        {
-          note: {
-            title: "Vettel quits red bull"
-          },
-          x: 765,
-          y: 362,
-          dy: -120,
-          dx: -10
-        }
-      ];
-
-      const makeAnnotations = d3.annotation()
-        .annotations(annotations);
-      svg
-        .append("g")
-        .call(makeAnnotations)
-    }
-
 })
 
 </script>
