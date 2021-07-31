@@ -12,7 +12,7 @@
         </p>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<div id="scatter_plot"></div>
 
 <script>
 
@@ -41,7 +41,7 @@ function make_y_gridlines() {
 
 
 // append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
+var svg = d3.select("#scatter_plot")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -102,10 +102,10 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
   // Color scale
   var color = d3.scaleLinear()
     .domain([500, 25000, 55000])
-    .range([ "green", "gold"])
+    .range([ "green", "gold"]);
 
   // -1- Create a tooltip div that is hidden by default:
-  var tooltip = d3.select("#my_dataviz")
+  var tooltip = d3.select("#scatter_plot")
     .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
@@ -155,4 +155,3 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 })
 
 </script>
-
