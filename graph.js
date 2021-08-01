@@ -38,6 +38,7 @@ console.log(data);
 	console.log("yScale" + yScale);
 
     	var Color = d3.scaleLinear().domain(gdp_extent).range(["#008000", "#FFDD73"]);
+	console.log("Color:" + Color);
 
 	
 	// set up the x-axis
