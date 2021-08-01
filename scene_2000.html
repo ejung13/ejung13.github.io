@@ -8,14 +8,14 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- Load d3-annotation -->
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
-        <p>
-            <h2>Distribution by GDP and Suicide in each country</h2>            
-        </p>
+
 <body> 
-<!-- Create a div where the graph will take place -->
+<p>
+   <h2>Distribution by GDP and Suicide in each country</h2>            
+</p>
+    <!-- Create a div where the graph will take place -->
 <div id="scatter_plot"></div>
 <script>
-
 // set the dimensions and margins of the graph
 var margin = {top: 40, right: 150, bottom: 60, left: 30},
     width = 800 - margin.left - margin.right,
@@ -175,8 +175,6 @@ d3.select("#scatter_plot")
   .call(makeAnnotations)
 
 })
-
-
 </script>
 </body>
 </html>
