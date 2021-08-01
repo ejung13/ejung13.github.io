@@ -1,13 +1,13 @@
 // set the dimensions and margins of the graph
-var margin = {top: 40, right: 150, bottom: 60, left: 30},
-    width = 800 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+const margin = {top: 40, right: 150, bottom: 60, left: 30};
+const width = 800 - margin.left - margin.right;
+const height = 600 - margin.top - margin.bottom;
 
-var xScale = d3.scaleLinear().range([0, width]);
-var yScale = d3.scaleLinear().rangeRound([height, 0]);
+const xScale = d3.scaleLinear().range([0, width]);
+const yScale = d3.scaleLinear().rangeRound([height, 0]);
 
-var yaxis = d3.axisLeft().scale(yScale);
-var xaxis = d3.axisBottom().scale(xScale).tickFormat(d3.format("d"));
+const yaxis = d3.axisLeft().scale(yScale);
+const xaxis = d3.axisBottom().scale(xScale).tickFormat(d3.format("d"));
 
 // gridlines in x/y axis function
 
@@ -23,11 +23,12 @@ function make_y_gridlines() {
 
 
 // append the svg object to the body of the page
-var svg = d3.select("#scatter_plot")
-  .append("div")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+
+const svg = d3.select("#scatter_plot").append("svg")
+    .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
+    .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
+
+const graph = svg.append("g")  
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
@@ -56,7 +57,6 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
         .tickSize(-height)
         .tickFormat("")
       );
-
 
     svg.append("g")
       .attr("class", "grid")
