@@ -1,71 +1,54 @@
-
-
-async function load_data(year) {
+async function readcsv(year) {
 	const data = await d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide_" + year + ".csv", function(d) {
         // transform data
         d['gdp_per_capita'] = parseInt(d['gdp_per_capita']);
 	d['suicides_100k_pop'] = parseFloat(d['suicides_100k_pop']);
 
         return d;});
-	draw(data, year);
+	creategraph(data, year);
 }
 
-function draw(data, year) {
-console.log(data);
-	var margin = 100,
-        width = 800,
-        height = 400,
-        shift = 10;
+function creategraph(data, year) {
 
     // 
     var gdp_extent = d3.extent(data, function(d) {
         return d['gdp_per_capita'];
     });
-	console.log("gdp_extent: "+ gdp_extent);
-
+	
     // 
     var suicide_extent = d3.extent(data, function(d) {
         return d['suicides_100k_pop'];
     });	
-	console.log("suicide_extent: "+ suicide_extent);
-    	
+	
     // 
 	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
-	console.log("xScale" + xScale);
 
     // 
 	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
-	console.log("yScale" + yScale);
 
     	var Color = d3.scaleLinear().domain(gdp_extent).range(["#008000", "#FFDD73"]);
-	console.log("Color:" + Color);
 
 	
-	// set up the x-axis
+	// x-axis
 	d3.select("svg").append("g")
 		.attr("width", width + 2*margin)
 		.attr("transform", "translate("+margin+","+(height+margin)+")")		
 		.call(d3.axisBottom(xScale))
-		//.selectAll("text")
-	    //.style("text-anchor", "end")
-	    //.attr("dx", "-.8em")
-	    //.attr("dy", ".15em")
-	    //.attr("transform", "rotate(-60)");
 
-	// set up x-axis label
+	// x-axis label
 	d3.select("svg").append("text")
 		.attr("transform", "translate("+(margin+width/2)+","+(height+margin*1.8)+")")
 		.style("text-anchor", "middle")
 		.attr("fill", "black")
 		.text("GDP per Capita");
 
-	// set up the y axis
+	// y-axis
 	d3.select("svg").append("g")
 		.attr("height", height + 2*margin)
 		.attr("transform", "translate("+margin+","+margin+")")
 		.call(d3.axisLeft(yScale));
 
-	// set up the y-axis label
+	// y-axis label
     	d3.select("svg").append("text")
 		.attr("transform", "rotate(-90)")
 		.attr("x", 0-(margin + height/2))
@@ -78,27 +61,28 @@ console.log(data);
         .style("opacity", 0)
         .style("position", "absolute")
         .attr("class", "tooltip")
-        .style("background-color", "#f9b2b2")
+        .style("background-color", "#FFB2D9")
         .style("border", 0)
         .style("border-width", "2px")
         .style("border-radius", "5px")
         .style("padding", "5px")
+        .style("color", "white")
 
       // Three function that change the tooltip when user hover / move / leave a cell
-      var mouseover = function(d) {
+      var showTooltip = function(d) {
         Tooltip
             .style("opacity", 1)
         d3.select(this)
             .style("r", 8) 
-            .style("fill", "#f67f7f")
+            .style("fill", "#FFB2D9")
       }
-      var mousemove = function(d) {
+      var moveTooltip = function(d) {
         Tooltip
             .html("Country: " + d['country'])
             .style("top", (parseInt(d3.select(this).attr("cy")) + 280) +"px")
             .style("left", (parseInt(d3.select(this).attr("cx")) + 50) + "px")
       }
-      var mouseleave = function(d) {
+      var hideTooltip = function(d) {
         Tooltip
             .style("opacity", 0)
         d3.select(this)
@@ -114,7 +98,7 @@ console.log(data);
             .attr("cy", function(d) {return yScale(d['suicides_100k_pop']);} )
             .attr("r", 5)
             .style("fill", function(d) {return Color(d['gdp_per_capita']);} )  
-            .on("mouseover", mouseover)
-            .on("mousemove", mousemove)
-            .on("mouseleave", mouseleave)
+            .on("mouseover", showTooltip)
+            .on("mousemove", moveTooltip)
+            .on("mouseleave", hideTooltip)
 }
