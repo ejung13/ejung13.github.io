@@ -30,13 +30,15 @@ function draw(data, year) {
     // create a scale for the y axis
 	var yScale = d3.scaleLinear().domain([0,suicide_extent[1]]).range([height-shift/2, 0]);
 
-    // set up the x-axis
+	// set up the x-axis
 	d3.select("svg")
             .attr("width", width + 2*margin)
             .attr("height", height + 2*margin)
         .append("g")
     		.attr("transform", "translate("+margin+","+(height+margin)+")")
     		.call(d3.axisBottom(xScale)
+                .ticks(d3.timeMonth)
+                .tickFormat(d3.timeFormat("%Y-%m")))
         .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
