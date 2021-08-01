@@ -31,11 +31,11 @@ console.log(data);
     	
     // 
 	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
-	console.log(gdp_extent);
+	console.log("xScale" + xScale);
 
     // 
 	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
-	console.log(suicide_extent);
+	console.log("yScale" + yScale);
 
 	// set up the x-axis
 	d3.select("svg")
