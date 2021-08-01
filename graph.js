@@ -102,7 +102,7 @@ console.log(data);
             .style("opacity", 0)
         d3.select(this)
             .style("r", 5)
-            .style("fill", "#a8a8a8")
+            //.style("fill", "#a8a8a8")
       }
 
     // add points
