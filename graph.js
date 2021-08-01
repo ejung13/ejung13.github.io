@@ -9,9 +9,10 @@ async function load_data(year) {
 
 function draw(data, year) {
 
-var margin = {top: 40, right: 150, bottom: 60, left: 30};
-    width = 800 - margin.left - margin.right;
-    height = 600 - margin.top - margin.bottom;
+	var margin = 100,
+        width = 800,
+        height = 400,
+        shift = 10;
 
     // 
     var gdp_extent = d3.extent(data, function(d) {
@@ -22,13 +23,12 @@ var margin = {top: 40, right: 150, bottom: 60, left: 30};
     var suicide_extent = d3.extent(data, function(d) {
         return d['suicides_100k_pop'];
     });
-    
-
+    	
     // create a time scale for x-axis using d3.scaleTime()
-	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
+	var xScale = d3.scaleLinear().domain(gdp_extent).range([shift, width]);
 
     // create a scale for the y axis
-	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
+	var yScale = d3.scaleLinear().domain([0, suicide_extent[1]]).range([height-shift/2, 0]);
 
 	// set up the x-axis
 	d3.select("svg")
