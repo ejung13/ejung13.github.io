@@ -17,11 +17,15 @@ console.log(data);
 	    console.log(d);
         return d['gdp_per_capita'];
     });
+	
+	console.log("gdp_extent: "+ gdp_extent);
 
     // 
     var suicide_extent = d3.extent(data, function(d) {
         return d['suicides_100k_pop'];
     });
+	
+	console.log("gdp_extent: "+ gdp_extent);
     	
     // create a time scale for x-axis using d3.scaleTime()
 	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
