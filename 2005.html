@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Correlation between GDP and suicide rate </title>
+    </head>
+    <script src='https://d3js.org/d3.v5.min.js'></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+    <script src="./graph.js"></script>
+    <style> </style>
+    <body style="width: 1500px" onload='init()'>
+        <p>
+            <h2> The number of suicides for each country's GDP per capita and 100k population </h2>
+            I don't like this assignment. 
+        </p>        
+        <div>
+            <svg width=1000 height=600></svg>
+        </div>       
+
+        <a class="internalLink" href="./index.html"> &lt;&lt;previous</a>
+        <a class="internalLink" style="background-color: #a8a8a8;">2000</a>
+        <a class="internalLink" style="background-color: #f9b2b2;">2005</a> 
+        <a class="internalLink" style="background-color: #a8a8a8;">2010</a> 
+        <a class="internalLink" style="background-color: #a8a8a8;">2015</a>  
+        <a class="internalLink" href="./2010.html"> next&gt;&gt;</a>
+ 
+        <script>
+            function init() {
+                var country = "all";
+                load_data(country);
+            }
+
+            const annotations = [
+              {
+                note: {
+                  label: "This is Label!",
+                  title: "This is Title"
+                },
+                type: d3.annotationCalloutCircle,
+                subject: {
+                  radius: 20,         // circle radius
+                  radiusPadding: 20   // white space around circle befor connector
+                },
+                color: ["#f9b2b2"],
+                x: 562,
+                y: 100,
+                dy: 100,
+                dx: 100
+              }
+            ]
+
+            // Add annotation to the chart
+            const makeAnnotations = d3.annotation()
+              .annotations(annotations)
+
+            d3.select("svg")
+              .append("g")
+              .call(makeAnnotations)
+
+        </script>
+    </body>
+</html>
