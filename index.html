@@ -53,21 +53,23 @@
                 },
                 type: d3.annotationCalloutCircle,
                 subject: {
-                  radius: 100,         // circle radius
+                  radius: 150,         // circle radius
                   radiusPadding: 10   // white space around circle before connector
                 },                
-                x: 600,
-                y: 300,
+                x: 1000,
+                y: 400,
                 dy: 0,
                 dx: 100
               }
             ]
 
             // Add annotation to the chart
-            const makeAnnotations = d3.annotation()
-              .annotations(annotation1)
-              .annotations(annotation2);
+            var makeAnnotations = d3.annotation()
+              .annotations(annotation1);
 
+            var makeAnnotations = d3.annotation()
+              .annotations(annotation2);
+            
             d3.select("svg")
               .append("g")
               .call(makeAnnotations)
