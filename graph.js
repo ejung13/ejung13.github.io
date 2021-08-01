@@ -37,7 +37,7 @@ console.log(data);
 	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
 	console.log("yScale" + yScale);
 
-    	var Color = d3.scaleLinear().domain(gdp_extent).range("#008000", "#FFDD73");
+    	var Color = d3.scaleLinear().domain(gdp_extent).range(["#008000", "#FFDD73"]);
 
 	
 	// set up the x-axis
