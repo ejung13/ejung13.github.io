@@ -9,26 +9,26 @@ async function load_data(year) {
 
 function draw(data, year) {
 
-    var margin = 100,
-        width = 800,
-        height = 400,
-        shift = 10;
+var margin = {top: 40, right: 150, bottom: 60, left: 30};
+    width = 800 - margin.left - margin.right;
+    height = 600 - margin.top - margin.bottom;
 
-    // get the minimum and maximum of dates (year/month)
+    // 
     var gdp_extent = d3.extent(data, function(d) {
         return d['gdp_per_capita'];
     });
 
-    // get the minimum and maximum of all case counts, regardless of which country category
+    // 
     var suicide_extent = d3.extent(data, function(d) {
         return d['suicides_100k_pop'];
-    })
+    });
+    
 
     // create a time scale for x-axis using d3.scaleTime()
-	var xScale = d3.scaleTime().domain(gdp_extent).range([shift, width]);
+	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
 
     // create a scale for the y axis
-	var yScale = d3.scaleLinear().domain([0,suicide_extent[1]]).range([height-shift/2, 0]);
+	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
 
 	// set up the x-axis
 	d3.select("svg")
@@ -37,8 +37,6 @@ function draw(data, year) {
         .append("g")
     		.attr("transform", "translate("+margin+","+(height+margin)+")")
     		.call(d3.axisBottom(xScale)
-                .ticks(d3.timeMonth)
-                .tickFormat(d3.timeFormat("%Y-%m")))
         .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
