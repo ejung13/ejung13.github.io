@@ -102,6 +102,10 @@ console.log(data);
             .style("fill", "#a8a8a8")
       }
 
+    var Color = d3.scaleOrdinal()
+    	.domain(gdp_extent)
+    	.range("#008000", "#FFDD73");
+
     // add points
     d3.select("svg").append("g")
             .attr("transform", "translate("+margin+","+margin+")")
@@ -109,7 +113,7 @@ console.log(data);
             .attr("cx", function(d){return xScale(d['gdp_per_capita']);} )
             .attr("cy", function(d){return yScale(d['suicides_100k_pop']);})
             .attr("r", 5)
-            .attr("fill", "#a8a8a8")
+            .style("fill", function (d) { return myColor(d.gdp_per_capita); } )
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)
