@@ -4,15 +4,13 @@
         <title> Correlation between GDP and Suicide Rate </title>
     </head>
     <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- Load d3-annotation -->
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
         <p>
             <h2>Distribution by GDP and Suicide in each country</h2>            
         </p>
 
-<!-- Create a div where the graph will take place -->
-<div id="scatter_plot"></div>
 
 <script>
 
@@ -42,7 +40,7 @@ function make_y_gridlines() {
 
 // append the svg object to the body of the page
 var svg = d3.select("#scatter_plot")
-  .append("svg")
+  .append("div")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -106,7 +104,7 @@ d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide
 
   // -1- Create a tooltip div that is hidden by default:
   var tooltip = d3.select("#scatter_plot")
-    .append("svg")
+    .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "black")
@@ -178,3 +176,7 @@ d3.select("#scatter_plot")
 
 
 </script>
+<body> 
+<!-- Create a div where the graph will take place -->
+<div id="scatter_plot"></div>
+</body>
