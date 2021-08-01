@@ -108,7 +108,7 @@ console.log(data);
     // add points
     d3.select("svg").append("g")
             .attr("transform", "translate("+margin+","+margin+")")
-        .selectAll("dot").data(data).enter().append("circle")
+        .selectAll().data(data).enter().append("circle")
             .attr("cx", function(d){return xScale(d['gdp_per_capit']);} )
             .attr("cy", function(d){return yScale(d['suicides_100k_pop']);})
             .attr("r", 5)
