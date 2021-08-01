@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Narrative Visualization Assignment </title>
+    </head>
+    <script src='https://d3js.org/d3.v5.min.js'></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+    <script src="./graph.js"></script>
+    <style> </style>
+    <body style="width: 1300px" onload='init()'>
+        <br>
+        <p>
+            <h2> Correlation between GDP Per Capita and Number of Suicides </h2>
+            I don't like this assignment. 
+        </p>     
+
+        <!-- Add buttons-->
+        <button type="button" onclick="location.href='./scene_2005.html';" value="2005"> 5 years ago   </button>
+        <button type="button" onclick="location.href='./scene_2015.html';" value="2015"> 5 years later   </button>
+    
+        <div>
+            <svg width=1000 height=600></svg>
+        </div>       
+    
+        <script>
+            function init() {
+                var year = "2010";
+                load_data(year);
+            }
+
+            const annotations = [
+              {
+                note: {
+                  label: "This is Label!",
+                  title: "This is Title"
+                },
+                type: d3.annotationCalloutCircle,
+                subject: {
+                  radius: 20,         // circle radius
+                  radiusPadding: 20   // white space around circle befor connector
+                },
+                color: ["#f9b2b2"],
+                x: 562,
+                y: 100,
+                dy: 100,
+                dx: 100
+              }
+            ]
+
+            // Add annotation to the chart
+            const makeAnnotations = d3.annotation()
+              .annotations(annotations)
+
+            d3.select("svg")
+              .append("g")
+              .call(makeAnnotations)
+
+        </script>
+    </body>
+</html>
