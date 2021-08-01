@@ -64,15 +64,16 @@
             ]
 
             // Add annotation to the chart
-            var makeAnnotations = d3.annotation()
+            var makeAnnotation1 = d3.annotation()
               .annotations(annotation1);
 
-            var makeAnnotations = d3.annotation()
+            var makeAnnotation2 = d3.annotation()
               .annotations(annotation2);
             
             d3.select("svg")
               .append("g")
-              .call(makeAnnotations)
+              .call(makeAnnotation1)            
+              .call(makeAnnotation2);
 
         </script>
     </body>
