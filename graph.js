@@ -9,6 +9,11 @@ async function readcsv(year) {
 }
 
 function creategraph(data, year) {
+	
+	var margin = 100,
+        width = 800,
+        height = 400,
+        shift = 10;
 
     // 
     var gdp_extent = d3.extent(data, function(d) {
