@@ -2,7 +2,6 @@
 async function load_data(year) {
 	const data = await d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide_" + year + ".csv", function(d) {
         return d;});
-	alert(data);
 	draw(data, year);
 }
 
@@ -25,10 +24,12 @@ function draw(data, year) {
     });
     	
     // create a time scale for x-axis using d3.scaleTime()
-	var xScale = d3.scaleLinear().domain(gdp_extent).range([shift, width]);
+	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
+	console.log(gdp_extent);
 
     // create a scale for the y axis
-	var yScale = d3.scaleLinear().domain([0, suicide_extent[1]]).range([height-shift/2, 0]);
+	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
+	console.log(suicide_extent);
 
 	// set up the x-axis
 	d3.select("svg")
