@@ -4,6 +4,7 @@ async function load_data(year) {
 	const data = await d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide_" + year + ".csv",
 				  	function(d) {
         					var graph_data;
+						console.log(d);
 						graph_data['gdp_per_capita'] = d['gdp_per_capita'];
 						graph_data['suicides_100k_pop'] = d['suicides_100k_pop']; 
 						graph_data['country'] = d['country']; 
