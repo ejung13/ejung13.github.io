@@ -103,13 +103,13 @@ console.log(data);
             .style("opacity", 0)
         d3.select(this)
             .style("r", 5)
-            //.style("fill", "#a8a8a8")
+            .style("fill", function(d) {return Color(d['gdp_per_capita']);} )  
       }
 
     // add points
     d3.select("svg").append("g")
             .attr("transform", "translate("+margin+","+margin+")")
-        .selectAll().data(data).enter().append("circle")
+        .selectAll("dot").data(data).enter().append("circle")
             .attr("cx", function(d) {return xScale(d['gdp_per_capita']);} )
             .attr("cy", function(d) {return yScale(d['suicides_100k_pop']);} )
             .attr("r", 5)
