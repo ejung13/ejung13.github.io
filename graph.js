@@ -5,6 +5,7 @@ async function load_data(year) {
 				  	function(d) {
         					var graph_data;
 						console.log(d);
+						console.log(d['gdp_per_capita']);
 						graph_data['gdp_per_capita'] = d['gdp_per_capita'];
 						graph_data['suicides_100k_pop'] = d['suicides_100k_pop']; 
 						graph_data['country'] = d['country']; 
