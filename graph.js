@@ -1,7 +1,12 @@
 
 
 async function load_data(year) {
-	const data = await d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide_" + year + ".csv");
+	const data = await d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide_" + year + ".csv", function(d) {
+        // transform data
+        d['gdp_per_capita'] = parseInt(d['gdp_per_capita']);
+	d['suicides_100k_pop'] = parseFloat(d['suicides_100k_pop']);
+
+        return d;});
 	draw(data, year);
 }
 
