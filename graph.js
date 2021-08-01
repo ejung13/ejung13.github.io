@@ -2,7 +2,7 @@
 async function load_data(year) {
 	const data = await d3.csv("https://raw.githubusercontent.com/ejung13/ejung13.github.io/main/suicide_" + year + ".csv", function(d) {
         return d;});
-	console.log(data);
+	alert(data);
 	draw(data, year);
 }
 
