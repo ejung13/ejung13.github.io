@@ -37,9 +37,7 @@ console.log(data);
 	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
 	console.log("yScale" + yScale);
 
-    var Color = d3.scaleLinear()
-    	.domain(gdp_extent)
-    	.range("#008000", "#FFDD73");
+    	var Color = d3.scaleLinear().domain(gdp_extent).range("#008000", "#FFDD73");
 
 	
 	// set up the x-axis
@@ -111,10 +109,10 @@ console.log(data);
     d3.select("svg").append("g")
             .attr("transform", "translate("+margin+","+margin+")")
         .selectAll().data(data).enter().append("circle")
-            .attr("cx", function(d){return xScale(d['gdp_per_capita']);} )
-            .attr("cy", function(d){return yScale(d['suicides_100k_pop']);})
+            .attr("cx", function(d) {return xScale(d['gdp_per_capita']);} )
+            .attr("cy", function(d) {return yScale(d['suicides_100k_pop']);} )
             .attr("r", 5)
-            .style("fill", function(d){return Color(d['gdp_per_capita']);} )  
+            .style("fill", function(d) {return Color(d['gdp_per_capita']);} )  
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)
