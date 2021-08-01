@@ -12,22 +12,36 @@
         <p>
             <h2> The number of suicides for each country's GDP per capita and 100k population </h2>
             I don't like this assignment. 
-        </p>        
+        </p>     
+    
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn"> Select Year </button>
+        <div id="selectyear" class="dropdown-content">
+            <a href="./index.html"> 2000 </a>
+            <a href="./2005.html"> 2005 </a>            
+        </div>
+    </div>
+
+        <!-- Add buttons-->
+        <button type="button" onclick="location.href='./2005.html';" value="2005"> 2005  </button>
+        <button type="button" onclick="location.href='./2010.html';" value="2005"> 2010  </button>
+        <button type="button" onclick="location.href='./2015.html';" value="2005"> 2015  </button>        
+    
         <div>
             <svg width=1000 height=600></svg>
         </div>       
 
-        <a class="internalLink" href="./index.html"> &lt;&lt;previous</a>
-        <a class="internalLink" style="background-color: #a8a8a8;">2000</a>
-        <a class="internalLink" style="background-color: #f9b2b2;">2005</a> 
+        <!--a class="internalLink" style="background-color: #f9b2b2;">2000</a>
+        <a class="internalLink" style="background-color: #a8a8a8;">2005</a> 
         <a class="internalLink" style="background-color: #a8a8a8;">2010</a> 
         <a class="internalLink" style="background-color: #a8a8a8;">2015</a>  
-        <a class="internalLink" href="./2010.html"> next&gt;&gt;</a>
- 
+        <a class="internalLink" href="./2005.html"> next&gt;&gt;</a-->    
+            
+    
         <script>
             function init() {
-                var country = "all";
-                load_data(country);
+                var year = "2000";
+                load_data(year);
             }
 
             const annotations = [
