@@ -36,7 +36,7 @@ var margin = {top: 40, right: 150, bottom: 60, left: 30};
             .attr("height", height + 2*margin)
         .append("g")
     		.attr("transform", "translate("+margin+","+(height+margin)+")")
-    		.call(d3.axisBottom(xScale)
+    		.call(d3.axisBottom(xScale))
         .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
@@ -53,7 +53,7 @@ var margin = {top: 40, right: 150, bottom: 60, left: 30};
     // set up the y axis
 	d3.select("svg").append("g")
 		.attr("transform", "translate("+margin+","+margin+")")
-		.call(d3.axisLeft(yScale))
+		.call(d3.axisLeft(yScale));
 
 	// set up the y-axis label
     d3.select("svg").append("text")
