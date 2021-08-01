@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Narrative Visualization Assignment </title>
+    </head>
+    
+	<script src='https://d3js.org/d3.v5.min.js'></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+    <script src="./graph.js"></script>
+	
+    
+    <body onload='init()'>
+        <p>
+            <h1> Correlation between GDP Per Capita and Number of Suicides </h1>
+            Every 5 years from 2005 to 2010, the graph below shows each country's GDP per Capita and the number of suicides per 100k population. 
+            <br> You will see that the figures for GDP and Suicide change every 5 years, but the overall plot of each graph does not change.   
+
+        <h3> Current Year: 2000 </h3>
+		Push the button to see the graph 5 years later.
+        </p>      
+		
+        <!-- Button -->		
+        <button type="button" onclick="location.href='./scene_2005.html';" value="2005"> 5 years later </button>
+		
+    
+        <div>
+            <svg width=1000 height=600></svg>
+        </div>                     
+    
+        <script>
+            function init() {
+                var year = "2000";
+                readcsv(year);
+            }
+
+            const annotation1 = [
+              {
+                note: {
+                  label: "Countries with high suicide rates have low GDP per Capita."
+                },
+                type: d3.annotationCalloutCircle,
+                subject: {
+                  radius: 100,         
+                  radiusPadding: 10   
+                },     
+				color: ["#2F9D27"],
+                x: 150,
+                y: 165,
+                dy: 20,
+                dx: 120
+              }
+            ]
+            
+            const annotation2 = [
+              {
+                note: {
+                  label: "Countries with high GDP per Capita have low suicide rates."
+                },
+                type: d3.annotationCalloutCircle,
+                subject: {
+                  radius: 105,      
+                  radiusPadding: 10 
+                },  
+				color: ["#D6C94D"],
+                x: 600,
+                y: 360,
+                dy: -100,
+                dx: 110
+              }
+            ]
+
+            // Add annotation to the chart
+            var makeAnnotation1 = d3.annotation()
+              .annotations(annotation1);
+
+            var makeAnnotation2 = d3.annotation()
+              .annotations(annotation2);
+            
+            d3.select("svg")
+              .append("g")
+              .call(makeAnnotation1);
+            
+            d3.select("svg")
+              .append("g")
+              .call(makeAnnotation2);
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
