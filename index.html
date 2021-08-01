@@ -65,7 +65,8 @@
 
             // Add annotation to the chart
             const makeAnnotations = d3.annotation()
-              .annotations(annotations)
+              .annotations(annotation1)
+              .annotations(annotation2);
 
             d3.select("svg")
               .append("g")
