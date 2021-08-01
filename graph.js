@@ -1,4 +1,3 @@
-<script>
 // set the dimensions and margins of the graph
 var margin = {top: 40, right: 150, bottom: 60, left: 30},
     width = 800 - margin.left - margin.right,
@@ -156,4 +155,3 @@ d3.select("#scatter_plot")
   .call(makeAnnotations);
 
 })
-</script>
