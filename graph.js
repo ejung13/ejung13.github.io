@@ -19,34 +19,31 @@ console.log(data);
 
     // 
     var gdp_extent = d3.extent(data, function(d) {
-	    console.log(d);
         return d['gdp_per_capita'];
     });
-	
 	console.log("gdp_extent: "+ gdp_extent);
 
     // 
     var suicide_extent = d3.extent(data, function(d) {
         return d['suicides_100k_pop'];
-    });
-	
-	console.log("gdp_extent: "+ gdp_extent);
+    });	
+	console.log("suicide_extent: "+ suicide_extent);
     	
-    // create a time scale for x-axis using d3.scaleTime()
+    // 
 	var xScale = d3.scaleLinear().domain(gdp_extent).range([0, width]);
 	console.log(gdp_extent);
 
-    // create a scale for the y axis
+    // 
 	var yScale = d3.scaleLinear().domain(suicide_extent).range([height, 0]);
 	console.log(suicide_extent);
 
 	// set up the x-axis
 	d3.select("svg")
 	    .attr("width", width + 2*margin)
-	    .attr("height", height + 2*margin)
-	.append("g")
-		//.attr("transform", "translate("+margin+","+(height+margin)+")")
-		.attr("transform", "translate(0," + height + ")")
+	    //.attr("height", height + 2*margin)
+		.append("g")
+		.attr("transform", "translate("+margin+","+(height+margin)+")")
+		//.attr("transform", "translate(0," + height + ")")
 		.call(d3.axisBottom(xScale))
 	.selectAll("text")
 	    .style("text-anchor", "end")
@@ -63,12 +60,13 @@ console.log(data);
 
 	// set up the y axis
 	d3.select("svg").append("g")
+		.attr("height", height + 2*margin)
 		.attr("transform", "translate("+margin+","+margin+")")
 		.call(d3.axisLeft(yScale));
 
 	// set up the y-axis label
     	d3.select("svg").append("text")
-		.attr("transform", "rotate(-90)")
+		.attr("transform", "rotate(90)")
 		.attr("x", 0-(margin + height/2))
 		.attr("y", margin/2)
 		.style("text-anchor", "middle")
