@@ -29,11 +29,10 @@
                 load_data(year);
             }
 
-            const annotations = [
+            const annotation1 = [
               {
                 note: {
-                  label: "It belongs to the group of the lowest GDP, with the highest suicide rate.",
-                  title: "Lithuania"
+                  label: "Countries with high suicide rates have low GDP per Capita."
                 },
                 type: d3.annotationCalloutCircle,
                 subject: {
@@ -42,6 +41,23 @@
                 },                
                 x: 150,
                 y: 150,
+                dy: 0,
+                dx: 100
+              }
+            ]
+            
+            const annotation2 = [
+              {
+                note: {
+                  label: "Countries with low suicide rates have high GDP per Capita."
+                },
+                type: d3.annotationCalloutCircle,
+                subject: {
+                  radius: 100,         // circle radius
+                  radiusPadding: 10   // white space around circle before connector
+                },                
+                x: 600,
+                y: 300,
                 dy: 0,
                 dx: 100
               }
