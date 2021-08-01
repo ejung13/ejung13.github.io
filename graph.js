@@ -15,6 +15,7 @@ function draw(data, year) {
 
     // 
     var gdp_extent = d3.extent(data, function(d) {
+	console.log(d);
         return d['gdp_per_capita'];
     });
 
