@@ -38,25 +38,22 @@ console.log(data);
 	console.log("yScale" + yScale);
 
 	// set up the x-axis
-	d3.select("svg")
-	    .attr("width", width + 2*margin)
-	    //.attr("height", height + 2*margin)
-		.append("g")
-		.attr("transform", "translate("+margin+","+(height+margin)+")")
-		//.attr("transform", "translate(0," + height + ")")
+	d3.select("svg").append("g")
+		.attr("width", width + 2*margin)
+		.attr("transform", "translate("+margin+","+(height+margin)+")")		
 		.call(d3.axisBottom(xScale))
-	.selectAll("text")
-	    .style("text-anchor", "end")
-	    .attr("dx", "-.8em")
-	    .attr("dy", ".15em")
-	    .attr("transform", "rotate(-60)");
+		//.selectAll("text")
+	    //.style("text-anchor", "end")
+	    //.attr("dx", "-.8em")
+	    //.attr("dy", ".15em")
+	    //.attr("transform", "rotate(-60)");
 
 	// set up x-axis label
 	d3.select("svg").append("text")
-	.attr("transform", "translate("+(margin+width/2)+","+(height+margin*1.8)+")")
-	.style("text-anchor", "middle")
-	.attr("fill", "black")
-	.text("GDP per Capita");
+		.attr("transform", "translate("+(margin+width/2)+","+(height+margin*1.8)+")")
+		.style("text-anchor", "middle")
+		.attr("fill", "black")
+		.text("GDP per Capita");
 
 	// set up the y axis
 	d3.select("svg").append("g")
@@ -66,7 +63,7 @@ console.log(data);
 
 	// set up the y-axis label
     	d3.select("svg").append("text")
-		.attr("transform", "rotate(90)")
+		.attr("transform", "rotate(-90)")
 		.attr("x", 0-(margin + height/2))
 		.attr("y", margin/2)
 		.style("text-anchor", "middle")
